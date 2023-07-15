@@ -48,7 +48,7 @@ class Question extends Model
         "validation_statement",
         "validation_value",
         "difficulty",
-        "is_exam",
         "is_active",
+        'image'
     ];
 }

@@ -11,15 +11,34 @@
 
 </head>
 
-<body>
-    <div class="w-screen h-screen bg-gray-800 flex flex-col place-content-center text-white">
+<body class="bg-gray-800">
+    <div class="w-screen h-screen bg-gray-800 flex flex-col text-white justify-center">
+
+        <form method="POST" action="{{ route('logout') }}" class="mt-20 mr-20 self-end">
+            @csrf
+
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+        this.closest('form').submit();"
+                class="bg-red-200 place-self-center my-2 rounded-full text-center text-black font-medium px-10 py-5">
+                Logout
+            </a>
+        </form>
 
         @foreach ($materials as $material)
-            <a href="/material/{{ $material->id }}"
-                class="w-1/2 h-32 bg-{{ $material->color }} place-self-center my-2 rounded-full text-center pt-12 text-black text-2xl font-medium">
-                {{ $material->name }}
-            </a>
+            <div class="flex gap-2">
+                <a href="/material/{{ $material->id }}"
+                    class="w-1/2 h-32 bg-{{ $material->color }} place-self-center my-2 rounded-full text-center pt-12 text-black text-2xl font-medium">
+                    Soal Latihan {{ $material->name }}
+                </a>
+                @if (!$material->is_exam)
+                    <a href="/material/download/{{ $material->id }}"
+                        class="bg-blue-200 place-self-center my-2 rounded-full text-center text-black font-medium p-3">
+                        Download {{ $material->name }}
+                    </a>
+                @endif
+            </div>
         @endforeach
+
     </div>
 </body>
 

@@ -30,15 +30,27 @@
         <div class="w-1/2 h-screen p-5 bg-gray-800 flex flex-col justify-between">
 
             <div class="w-100 h-screen bg-gray-600 flex flex-col p-5 rounded-md">
-                <h2 class="text-white">
-                    Question
+                <h2 class="text-white bg-green-600 p-5 mb-5 rounded-md">
+                    Persentase
                     {{ $percentage }}/100
                 </h2>
                 @if ($question == null)
-                    <p>Score Anda : {{ $score }}</p>
+                    <p class="bg-green-600 w-full h-20 text-white text-2xl font-bold text-center pt-5">
+                        Total Score Anda Adalah : {{ $score }}
+                    </p>
+                    <a class='bg-yellow-600 h-1/6 mt-5 rounded-md text-center pt-6 text-black text-2xl font-medium'
+                        id="home"href="/">
+                        Home
+                    </a>
                 @else
+                    @if ($question->image != null)
+                        <div class="m-6">
+                            <img src="{{ url($question->image) }}" alt="" class="h-60 w-full object-contain">
+                        </div>
+                    @endif
                     <p class="text-white">{{ $question->question }}</p>
                 @endif
+
                 {{--                 
                     <p class="text-white">{{ $question->question }}</p>
                     <br> --}}
@@ -64,6 +76,7 @@
             var formData = {
                 code: $('#code').val(),
                 question_id: '{{ $question->id ?? 0 }}',
+                material_id: '{{ $material->id }}',
             };
             $.ajax({
                 type: 'POST',

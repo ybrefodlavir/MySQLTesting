@@ -20,6 +20,7 @@ class MaterialSeeder extends Seeder
                 'order' => 1,
                 'color' => 'red-500',
                 'is_exam' => false,
+                'path' => '/materials/Materi SQL DML INSERT.pdf',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -29,6 +30,7 @@ class MaterialSeeder extends Seeder
                 'order' => 2,
                 'color' => 'blue-500',
                 'is_exam' => false,
+                'path' => '/materials/Materi SQL DML UPDATE.pdf',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -38,6 +40,7 @@ class MaterialSeeder extends Seeder
                 'order' => 3,
                 'color' => 'yellow-500',
                 'is_exam' => false,
+                'path' => '/materials/Materi SQL DML DELETE.pdf',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -47,6 +50,7 @@ class MaterialSeeder extends Seeder
                 'order' => 4,
                 'color' => 'green-500',
                 'is_exam' => true,
+                'path' => null,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

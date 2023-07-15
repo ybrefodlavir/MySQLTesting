@@ -39,11 +39,11 @@
                 <h2 class="text-white">
                     Question
                 </h2>
-                @if ($question == null)
+                {{-- @if ($question == null)
                     <p>Pertanyaan sudah habis</p>
                 @else
                     <p class="text-white">{{ $question->question }}</p>
-                @endif
+                @endif --}}
 
             </div>
             <a class='bg-green-600 h-1/6 mt-5 rounded-md text-center pt-5 text-white text-lg hidden'

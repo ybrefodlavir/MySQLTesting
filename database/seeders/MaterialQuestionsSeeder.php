@@ -30,29 +30,44 @@ class MaterialQuestionsSeeder extends Seeder
                 'order' => 3,
             ],
             [
-                'material_id' => 2,
+                'material_id' => 1,
                 'question_id' => 4,
-                'order' => 1,
+                'order' => 4,
             ],
             [
                 'material_id' => 2,
                 'question_id' => 5,
-                'order' => 2,
+                'order' => 1,
             ],
             [
                 'material_id' => 2,
                 'question_id' => 6,
+                'order' => 2,
+            ],
+            [
+                'material_id' => 2,
+                'question_id' => 7,
                 'order' => 3,
             ],
             [
-                'material_id' => 3,
-                'question_id' => 7,
+                'material_id' => 4,
+                'question_id' => 10,
                 'order' => 1,
             ],
             [
-                'material_id' => 3,
-                'question_id' => 8,
+                'material_id' => 4,
+                'question_id' => 11,
                 'order' => 2,
+            ],
+            [
+                'material_id' => 4,
+                'question_id' => 12,
+                'order' => 3,
+            ],
+            [
+                'material_id' => 4,
+                'question_id' => 13,
+                'order' => 4,
             ],
         ]);
     }

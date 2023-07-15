@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Question;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,7 @@ class TestController extends Controller
             } else if (preg_match('(insert|update|delete)i', $code) === 1) {
                 DB::connection('mysql-test')->statement($code);
                 // validation here
-                $validation = $this->statementValidation($question_id);
+                $validation = $this->statementValidation($question_id, $code);
                 if ($validation['status'] == false) {
                     DB::connection('mysql-test')->rollBack();
                     $this->create_answer(request()->user()->id, $question_id, $code, 0, $attempt_count, "Answer is wrong " . $validation['message'], $material_id);
@@ -45,7 +46,7 @@ class TestController extends Controller
             return response()->json(['status' => 'error', 'message' =>  $error->getMessage()]);
         }
     }
-    private function statementValidation($question_id)
+    private function statementValidation($question_id, $code)
     {
         $question = Question::find($question_id);
         $validation_statement = json_decode($question->validation_statement, true);
@@ -54,7 +55,6 @@ class TestController extends Controller
             'status' => false,
             'message' => '',
         ];
-
         if ($question->type == Question::$InsertSingle || $question->type == Question::$InsertSingleSpecific) {
             $query = DB::connection('mysql-test')->table($validation_statement['tableName'])
                 ->selectRaw($validation_statement['selectRaw'])
@@ -97,6 +97,7 @@ class TestController extends Controller
             $query = DB::connection('mysql-test')->table($validation_statement['tableName'])
                 ->selectRaw($validation_statement['selectRaw'])
                 ->get();
+
             foreach ($validation_value as $key => $row) {
                 foreach ($row as $property => $value) {
                     if ($value !== $query[$key]->$property) {
@@ -129,6 +130,53 @@ class TestController extends Controller
                 ->selectRaw($validation_statement['selectRaw'])
                 ->whereRaw($validation_statement['whereRaw'])
                 ->get();
+
+
+            $words = strtolower($code);
+            $words = explode(" ", $words);
+            $key = array_search('from', $words);
+
+
+            if (
+                $key !== false && isset($words[$key + 1])
+            ) {
+                $nextWord = $words[$key + 1];
+                $nextWord = str_replace(';', '', $nextWord);
+                if ($validation_statement['tableName'] != $nextWord) {
+                    $valid['status'] = false;
+                    $valid['message'] = "The table is not match";
+                    return $valid;
+                }
+            }
+
+            $words2 = strtolower($code);
+            $words2 = explode(" ", $words2);
+            $key2 = array_search('where', $words2);
+            if (
+
+                $key2 !== false && isset($words2[$key + 1])
+            ) {
+                $nextWord2 = $words2[$key2 + 1];
+                $nextWord2 = str_replace(';', '', $nextWord2);
+                if ($validation_statement['whereRaw'] != $nextWord2) {
+                    $valid['status'] = false;
+                    $valid['message'] = "The condition is not match";
+                    return $valid;
+                }
+            }
+
+            // foreach ($validation_value as $key => $row) {
+            //     foreach ($row as $property => $value) {
+            //         if ($value !== $query[$key]->$property) {
+            //             $valid['status'] = false;
+            //             $valid['message'] = "The value doesn't match";
+            //             return $valid;
+            //         } else {
+            //             $valid['status'] = true;
+            //         }
+            //     }
+            // }
+
             if (!$query->empty()) {
                 $valid['status'] = false;
                 $valid['message'] = "The data haven't been deleted";
@@ -139,6 +187,21 @@ class TestController extends Controller
         } else if ($question->type == Question::$DeleteAll) {
             $query = DB::connection('mysql-test')->table($validation_statement['tableName'])
                 ->get();
+            $words = strtolower($code);
+            $words = explode(" ", $words);
+            $key = array_search('from', $words);
+
+            if (
+                $key !== false && isset($words[$key + 1])
+            ) {
+                $nextWord = $words[$key + 1];
+                $nextWord = str_replace(';', '', $nextWord);
+                if ($validation_statement['tableName'] != $nextWord) {
+                    $valid['status'] = false;
+                    $valid['message'] = "The table is not match";
+                    return $valid;
+                }
+            }
             if (!$query->empty()) {
                 $valid['status'] = false;
                 $valid['message'] = "The data haven't been deleted";
@@ -147,7 +210,6 @@ class TestController extends Controller
                 $valid['status'] = true;
             }
         }
-
 
         return $valid;
     }
