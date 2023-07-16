@@ -49,7 +49,12 @@
                 <label for="type" class="block mb-2 text-sm font-medium">Material Type</label>
                 <select name="material_id" id="" class="w-full">
                     @foreach ($materials as $material)
-                        <option value="{{ $material->id }}">{{ $material->name }}</option>
+                        @if ($material->id == $materialq->material_id)
+                            <option selected="{{ $material->id }}" value="{{ $material->id }}">{{ $material->name }}
+                            </option>
+                        @else
+                            <option value="{{ $material->id }}">{{ $material->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -58,7 +63,12 @@
                 <label for="type" class="block mb-2 text-sm font-medium">Question</label>
                 <select name="question_id" id="" class="w-full">
                     @foreach ($questions as $question)
-                        <option value="{{ $question->id }}" class="w-24">{{ $question->question }}</option>
+                        @if ($question->id == $materialq->question_id)
+                            <option selected="{{ $question->id }}" value="{{ $question->id }}" class="w-24">
+                                {{ $question->question }}</option>
+                        @else
+                            <option value="{{ $question->id }}" class="w-24">{{ $question->question }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

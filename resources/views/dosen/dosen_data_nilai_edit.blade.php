@@ -50,7 +50,12 @@
                 <label for="type" class="block mb-2 text-sm font-medium">User Name</label>
                 <select name="user_id" id="" class="w-100">
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}" class="w-24">{{ $user->name }}</option>
+                        @if ($user->id == $student_score->user_id)
+                            <option selected="{{ $user->id }}" value="{{ $user->id }}" class="w-24">
+                                {{ $user->name }}</option>
+                        @else
+                            <option value="{{ $user->id }}" class="w-24">{{ $user->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -59,7 +64,12 @@
                 <label for="type" class="block mb-2 text-sm font-medium">Material Type</label>
                 <select name="material_id" id="" class="w-full">
                     @foreach ($materials as $material)
-                        <option value="{{ $material->id }}">{{ $material->name }}</option>
+                        @if ($material->id == $student_score->material_id)
+                            <option selected="{{ $material->id }}" value="{{ $material->id }}">{{ $material->name }}
+                            </option>
+                        @else
+                            <option value="{{ $material->id }}">{{ $material->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
