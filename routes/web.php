@@ -8,6 +8,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\DosenBankSoalController;
 use App\Http\Controllers\DosenDataMaterialController;
 use App\Http\Controllers\DosenManageSoalController;
+use App\Http\Controllers\DosenDataNilaiController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -59,6 +60,12 @@ Route::middleware('auth', 'isAdmin')->group(function () {
     Route::get('/create_manage_soal', [DosenManageSoalController::class, 'create'])->name('dosenManageSoalCreate');
     Route::post('/create_manage_soal', [DosenManageSoalController::class, 'store'])->name('dosenManageSoalStore');
     Route::post('/delete_manage_soal/{id}', [DosenManageSoalController::class, 'delete'])->name('dosenManageSoalDelete');
+
+    //COntroller Dosen Data Nilai
+    Route::get('/dosen_data_nilai', [DosenDataNilaiController::class, 'index'])->name('dosen_data_nilai');
+    Route::get('/edit_data_nilai/{id}', [DosenDataNilaiController::class, 'edit'])->name('dosenDataNilaiEdit');
+    Route::post('/edit_data_nilai/{id}', [DosenDataNilaiController::class, 'update'])->name('dosenDataNilaiUpdate');
+    Route::post('/delete_data_nilai/{id}', [DosenDataNilaiController::class, 'delete'])->name('dosenDataNilaiDelete');
 });
 
 

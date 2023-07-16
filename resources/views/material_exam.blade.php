@@ -39,7 +39,7 @@
                         Total Score Anda Adalah : {{ $score }}
                     </p>
                     <a class='bg-yellow-600 h-1/6 mt-5 rounded-md text-center pt-6 text-black text-2xl font-medium'
-                        id="home"href="/">
+                        id="home"href="/home">
                         Home
                     </a>
                 @else
@@ -57,7 +57,7 @@
 
 
             </div>
-            <a class='bg-green-600 h-1/6 mt-5 rounded-md text-center pt-5 text-white hidden'
+            <a class='bg-green-600 h-1/6 mt-5 rounded-md text-center py-5 text-white hidden'
                 id="next_button"href="/material/{{ $material->id }}">
                 Next
             </a>

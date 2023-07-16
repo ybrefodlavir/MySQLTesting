@@ -99,11 +99,14 @@ class MaterialController extends Controller
 
     private function create_score($user_id, $score, $material_id)
     {
-        StundentScore::create([
-            'user_id' => $user_id,
-            'score' => $score,
-            'material_id' => $material_id,
+        $student_score = StundentScore::where([['user_id', $user_id], ['material_id', $material_id]])->first();
+        if (!$student_score) {
+            $student_score = new StundentScore();
+        }
+        $student_score->user_id = $user_id;
+        $student_score->material_id = $material_id;
+        $student_score->score = $score;
 
-        ]);
+        $student_score->save();
     }
 }
