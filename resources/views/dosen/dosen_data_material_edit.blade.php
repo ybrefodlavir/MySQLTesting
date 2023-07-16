@@ -61,22 +61,41 @@
                 <label for="is_exam" class="block mb-2 text-sm font-medium">Is Exam</label>
                 {{-- <input type="text" name="is_exam" id="" placeholder="write the material name here"
                     class="w-96"> --}}
-                <div class="flex items-center mb-4">
-                    <input id="" type="radio" name="is_exam" value=0
-                        class="w-4 h-4 border-black-300 focus:ring-2 focus:ring-black dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white dark:border-gray-600"
-                        checked>
-                    <label for="is_exam" class="block ml-2 text-sm font-medium text-black dark:text-black">
-                        0
-                    </label>
-                </div>
+                @if ($material->is_exam == 0)
+                    <div class="flex items-center mb-4">
+                        <input id="" type="radio" name="is_exam" value=0
+                            class="w-4 h-4 border-black-300 focus:ring-2 focus:ring-black dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white dark:border-gray-600"
+                            checked>
+                        <label for="is_exam" class="block ml-2 text-sm font-medium text-black dark:text-black">
+                            0
+                        </label>
+                    </div>
 
-                <div class="flex items-center mb-4">
-                    <input id="" type="radio" name="is_exam" value=1
-                        class="w-4 h-4 border-black-300 focus:ring-2 focus:ring-black dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white dark:border-gray-600">
-                    <label for="is_exam" class="block ml-2 text-sm font-medium text-black dark:text-black">
-                        1
-                    </label>
-                </div>
+                    <div class="flex items-center mb-4">
+                        <input id="" type="radio" name="is_exam" value=1
+                            class="w-4 h-4 border-black-300 focus:ring-2 focus:ring-black dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white dark:border-gray-600">
+                        <label for="is_exam" class="block ml-2 text-sm font-medium text-black dark:text-black">
+                            1
+                        </label>
+                    </div>
+                @else
+                    <div class="flex items-center mb-4">
+                        <input id="" type="radio" name="is_exam" value=0
+                            class="w-4 h-4 border-black-300 focus:ring-2 focus:ring-black dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white dark:border-gray-600">
+                        <label for="is_exam" class="block ml-2 text-sm font-medium text-black dark:text-black">
+                            0
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="" type="radio" name="is_exam" value=1
+                            class="w-4 h-4 border-black-300 focus:ring-2 focus:ring-black dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-white dark:border-gray-600"
+                            checked>
+                        <label for="is_exam" class="block ml-2 text-sm font-medium text-black dark:text-black">
+                            1
+                        </label>
+                    </div>
+                @endif
             </div>
 
             <div class="mb-6">
