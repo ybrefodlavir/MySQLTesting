@@ -59,8 +59,19 @@
                 @foreach ($student_scores as $student_score)
                     <tr>
                         <td class="border-black border border-black-100 px-6 py-4">{{ $student_score->id }}</td>
-                        <td class="border-black border border-black-100 px-6 py-4">{{ $student_score->user_id }}</td>
-                        <td class="border-black border border-black-100 px-6 py-4">{{ $student_score->material_id }}
+                        <td class="border-black border border-black-100 px-6 py-4">
+                            @foreach ($users as $user)
+                                @if ($student_score->user_id == $user->id)
+                                    {{ $user->name }}
+                                @endif
+                            @endforeach
+                        </td>
+                        <td class="border-black border border-black-100 px-6 py-4">
+                            @foreach ($materials as $material)
+                                @if ($student_score->material_id == $material->id)
+                                    {{ $material->name }}
+                                @endif
+                            @endforeach
                         </td>
                         <td class="border-black border border-black-100 px-6 py-4">{{ $student_score->score }}</td>
                         <td class="border-black border border-black-100 px-6 py-4">

@@ -12,8 +12,10 @@ class DosenManageSoalController extends Controller
 {
     public function index()
     {
+        $materials = Material::all();
+        $questions = Question::all();
         $materialqs = MaterialQuestions::all();
-        return view('dosen/dosen_manage_soal', compact(['materialqs']));
+        return view('dosen/dosen_manage_soal', compact(['materials', 'questions', 'materialqs']));
     }
     public function edit(Request $request, $id)
     {

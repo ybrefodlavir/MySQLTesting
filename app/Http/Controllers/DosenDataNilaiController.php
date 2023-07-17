@@ -13,8 +13,10 @@ class DosenDataNilaiController extends Controller
 {
     public function index()
     {
+        $materials = Material::all();
+        $users = User::all();
         $student_scores = StundentScore::all();
-        return view('dosen/dosen_data_nilai', compact(['student_scores']));
+        return view('dosen/dosen_data_nilai', compact(['materials', 'users', 'student_scores']));
     }
     public function edit(Request $request, $id)
     {

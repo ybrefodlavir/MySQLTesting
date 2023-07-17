@@ -64,8 +64,21 @@
                 @foreach ($materialqs as $materialq)
                     <tr>
                         <td class="border-black border border-black-100 px-6 py-4">{{ $materialq->id }}</td>
-                        <td class="border-black border border-black-100 px-6 py-4">{{ $materialq->material_id }}</td>
-                        <td class="border-black border border-black-100 px-6 py-4">{{ $materialq->question_id }}</td>
+                        <td class="border-black border border-black-100 px-6 py-4">
+                            @foreach ($materials as $material)
+                                @if ($materialq->material_id == $material->id)
+                                    {{ $material->name }}
+                                @endif
+                            @endforeach
+                        </td>
+                        <td class="border-black border border-black-100 px-6 py-4">
+
+                            @foreach ($questions as $question)
+                                @if ($materialq->question_id == $question->id)
+                                    {{ $question->question }}
+                                @endif
+                            @endforeach
+                        </td>
                         <td class="border-black border border-black-100 px-6 py-4">{{ $materialq->order }}</td>
                         <td class="border-black border border-black-100 px-6 py-4">
                             <div class="flex flex-row">
