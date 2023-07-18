@@ -54,7 +54,7 @@
             <thead class="border-black border border-black-100">
                 <tr>
                     <th class="border-black border border-black-100 px-6 py-3">ID</th>
-                    <th class="border-black border border-black-100 px-6 py-3">Material ID</th>
+                    <th class="border-black border border-black-100 px-6 py-3">Material Type</th>
                     <th class="border-black border border-black-100 px-6 py-3">Question</th>
                     <th class="border-black border border-black-100 px-6 py-3">Order</th>
                     <th class="border-black border border-black-100 px-6 py-3">Action</th>

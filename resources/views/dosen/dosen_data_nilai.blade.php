@@ -49,8 +49,8 @@
             <thead class="border-black border border-black-100">
                 <tr>
                     <th class="border-black border border-black-100 px-6 py-3">ID</th>
-                    <th class="border-black border border-black-100 px-6 py-3">User ID</th>
-                    <th class="border-black border border-black-100 px-6 py-3">Material ID</th>
+                    <th class="border-black border border-black-100 px-6 py-3">User Name</th>
+                    <th class="border-black border border-black-100 px-6 py-3">Material Type</th>
                     <th class="border-black border border-black-100 px-6 py-3">Score</th>
                     <th class="border-black border border-black-100 px-6 py-3">Action</th>
                 </tr>
